@@ -7,6 +7,10 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] InputActionReference move;
     [SerializeField] InputActionReference look;
     [SerializeField] InputActionReference interact;
+    [SerializeField] InputActionReference useFirstWeapon;
+    [SerializeField] InputActionReference useSecondWeapon;
+    [SerializeField] InputActionReference useThirdWeapon;
+    [SerializeField] InputActionReference useFourthWeapon;
 
     private void Awake()
     {
@@ -21,6 +25,11 @@ public class PlayerInput : MonoBehaviour
         look.action.canceled += OnLook;
 
         interact.action.performed += OnInteract;
+
+        useFirstWeapon.action.performed += OnUseFirstWeapon;
+        useSecondWeapon.action.performed += OnUseSecondWeapon;
+        useThirdWeapon.action.performed += OnUseThirdWeapon;
+        useFourthWeapon.action.performed += OnUseFourthWeapon;
     }
 
     private void OnEnable()
@@ -28,6 +37,10 @@ public class PlayerInput : MonoBehaviour
         move.action.Enable();
         look.action.Enable();
         interact.action.Enable();
+        useFirstWeapon.action.Enable();
+        useSecondWeapon.action.Enable();
+        useThirdWeapon.action.Enable();
+        useFourthWeapon.action.Enable();
     }
 
     Vector2 rawMove;
@@ -53,6 +66,25 @@ public class PlayerInput : MonoBehaviour
         playerMovement.Interact();
     }
 
+    void OnUseFirstWeapon(InputAction.CallbackContext ctx)
+    {
+        playerMovement.UseWeapon(0);
+    }
+
+    void OnUseSecondWeapon(InputAction.CallbackContext ctx)
+    {
+        playerMovement.UseWeapon(1);
+    }
+
+    void OnUseThirdWeapon(InputAction.CallbackContext ctx)
+    {
+        playerMovement.UseWeapon(2);
+    }
+
+    void OnUseFourthWeapon(InputAction.CallbackContext ctx)
+    {
+        playerMovement.UseWeapon(3);
+    }
 
 
     private void OnDisable()
@@ -60,6 +92,10 @@ public class PlayerInput : MonoBehaviour
         move.action.Disable();
         look.action.Disable();
         interact.action.Disable();
+        useFirstWeapon.action.Disable();
+        useSecondWeapon.action.Disable();
+        useThirdWeapon.action.Disable();
+        useFourthWeapon.action.Disable();
     }
 
     private void OnDestroy()
@@ -73,5 +109,10 @@ public class PlayerInput : MonoBehaviour
         look.action.canceled -= OnLook;
 
         interact.action.performed -= OnInteract;
+
+        useFirstWeapon.action.performed -= OnUseFirstWeapon;
+        useSecondWeapon.action.performed -= OnUseSecondWeapon;
+        useThirdWeapon.action.performed -= OnUseThirdWeapon;
+        useFourthWeapon.action.performed -= OnUseFourthWeapon;
     }
 }

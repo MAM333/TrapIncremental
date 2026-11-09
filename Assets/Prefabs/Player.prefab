@@ -17,6 +17,8 @@ GameObject:
   - component: {fileID: 4548852095378002201}
   - component: {fileID: 7804891587904129004}
   - component: {fileID: 3948263996363081270}
+  - component: {fileID: 1733973355051333003}
+  - component: {fileID: 848137246553772427}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -32,7 +34,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3019290393470914283}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.12, y: 1.37, z: 1.11064}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -203,6 +205,10 @@ MonoBehaviour:
   move: {fileID: -1680190386980627800, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   look: {fileID: -5630151704836100654, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   interact: {fileID: 6194532780898333140, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  useFirstWeapon: {fileID: -7622032446233718713, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  useSecondWeapon: {fileID: -7453840166712507564, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  useThirdWeapon: {fileID: -2792003713112207851, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  useFourthWeapon: {fileID: 701224282842565462, guid: 052faaac586de48259a63d0c4782560b, type: 3}
 --- !u!114 &3948263996363081270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,6 +221,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0ae825b330028f459fd387ae173972b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerTransform
+--- !u!114 &1733973355051333003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3019290393470914283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 459cd8996e9c0514ca04e327a87a3b18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
+  life: 10
+--- !u!114 &848137246553772427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3019290393470914283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36dcaceba96827245abfe7786df84268, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerTraps
+  traps:
+  - trap: {fileID: 11400000, guid: 0a134265f8c088f4582f40d4d67454d7, type: 2}
+    numOfTraps: 2
+  - trap: {fileID: 11400000, guid: 2c17accabfd77d24582ee46d2c5d484b, type: 2}
+    numOfTraps: 2
 --- !u!1 &9100494486556938502
 GameObject:
   m_ObjectHideFlags: 0

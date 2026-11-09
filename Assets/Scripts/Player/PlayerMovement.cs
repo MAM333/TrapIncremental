@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float maxLookAngle = 85f;
 
     CharacterController characterController;
+    PlayerTraps playerTraps;
     Vector2 rawMove;
     Vector2 rawLook;
     float cameraRotationX;
@@ -18,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
+        playerTraps = GetComponent<PlayerTraps>();
     }
 
     private void Start()
@@ -44,6 +46,11 @@ public class PlayerMovement : MonoBehaviour
     public void Interact()
     {
 
+    }
+
+    public void UseWeapon(int which)
+    {
+        playerTraps.UseTrap(which);
     }
 
     void HandleLook()

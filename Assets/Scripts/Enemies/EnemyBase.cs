@@ -1,29 +1,71 @@
+using System;
+using System.Collections;
 using UnityEngine;
 
-public class EnemyBase : MonoBehaviour
+public class EnemyBase : MonoBehaviour, IDamageable
 {
-    [SerializeField] float life = 10f;
+    [Header("Stats")]
+    [SerializeField] int life = 10;
     [SerializeField] float touchDistance = 2f;
-
     [SerializeField] float moveSpeed = 5f;
+    [SerializeField] int damagePerMilisecond = 1;
 
     [Header("Separation")]
     [SerializeField] float separationRadius = 1.5f;
     [SerializeField] float separationWeight = 2f;
     [SerializeField] LayerMask enemyLayer;
 
+    [Header("Other")]
+    [SerializeField] Material damageMaterial;
+    [SerializeField] float showDamageTime = 0.2f;
+
+    public event Action enemyDied;
+
+    Material initMaterial;
+
     Transform playerTransform;
+    IDamageable playerDamageable;
+    MeshRenderer mesh;
     void Start()
     {
         playerTransform = PlayerTransform.instance.GetPlayerTransform();
+        playerDamageable = playerTransform.GetComponent<IDamageable>();
+        mesh = GetComponent<MeshRenderer>();
+
+        initMaterial = mesh.material;
     }
 
     bool touchingPlayer = false;
     private void Update()
     {
+        if (life <= 0) return;
+
         TouchingPlayer();
         DamagePlayer();
         Move();
+    }
+
+    public void GetDamage(int damage)
+    {
+        life -= damage;
+
+        StopAllCoroutines();
+        StartCoroutine(ShowDamage());
+        
+        if (life <= 0)
+        {
+            life = 0;
+            Die();
+        }
+    }
+
+    IEnumerator ShowDamage()
+    {
+        mesh.material = damageMaterial;
+
+        yield return new WaitForSeconds(showDamageTime);
+
+        mesh.material = initMaterial;
     }
 
     private void TouchingPlayer()
@@ -33,11 +75,22 @@ public class EnemyBase : MonoBehaviour
         else touchingPlayer = false;
     }
 
+    float timer = 0;
     private void DamagePlayer()
     {
-        if (!touchingPlayer) return;
+        if (!touchingPlayer)
+        {
+            timer = 0;
+            return;
+        }
 
         //Golpear cada x tiempo
+        timer -= Time.deltaTime;
+        if (timer <= 0)
+        {
+            playerDamageable.GetDamage(damagePerMilisecond);
+            timer = 0.1f;
+        }
     }
 
     private void Move()
@@ -75,6 +128,12 @@ public class EnemyBase : MonoBehaviour
             finalDirection.Normalize();
             transform.position += finalDirection * moveSpeed * Time.deltaTime;
         }
+    }
 
+    private void Die()
+    {
+        enemyDied?.Invoke();
+
+        Destroy(gameObject);
     }
 }
