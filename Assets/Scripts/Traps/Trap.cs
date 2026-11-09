@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Trap : MonoBehaviour
@@ -7,6 +8,7 @@ public abstract class Trap : MonoBehaviour
     [SerializeField] protected float cdTime = 2f;
     [SerializeField] protected int trapDamage = 5;
 
+    protected int numOfEnemiesInTrap = 0;
     protected TrapState state = TrapState.Ready;
 
     protected float timer = 0;
@@ -21,10 +23,20 @@ public abstract class Trap : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
+            numOfEnemiesInTrap++;
+
             if (state == TrapState.Ready)
             {
                 Activate();
             }
+        }
+    }
+
+    protected virtual void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            --numOfEnemiesInTrap;
         }
     }
 
@@ -38,13 +50,6 @@ public abstract class Trap : MonoBehaviour
 
     protected virtual void Work()
     {
-        //float yPosAct = Mathf.Lerp(endYPosition, startYPosition, (timer / timeToMoveUp));
-        //foreach (Transform spike in spikes)
-        //{
-        //    Vector3 pos = spike.transform.position;
-        //    spike.transform.position = new Vector3(pos.x, yPosAct, pos.z);
-        //}
-
         timer -= Time.deltaTime;
 
         if (timer <= 0)
@@ -56,19 +61,14 @@ public abstract class Trap : MonoBehaviour
 
     protected virtual void Recharge()
     {
-        //float yPosAct = Mathf.Lerp(startYPosition, endYPosition, (timer / timeToMoveDown));
-        //foreach (Transform spike in spikes)
-        //{
-        //    Vector3 pos = spike.transform.position;
-        //    spike.transform.position = new Vector3(pos.x, yPosAct, pos.z);
-        //}
-
         timer -= Time.deltaTime;
 
         if (timer <= 0)
         {
             state = TrapState.Ready;
             timer = 0;
+            if (numOfEnemiesInTrap > 0) Activate();
+            numOfEnemiesInTrap = 0;
         }
     }
 }

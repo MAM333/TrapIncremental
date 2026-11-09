@@ -7,7 +7,8 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] GameObject enemyPrefab1;
     [SerializeField] Transform spawnPointsParent;
     [SerializeField] float timeBetweenSpawns = 1f;
-    [SerializeField] float spawnRadius = 20f;
+    [SerializeField] float spawnRadiusMax = 30f;
+    [SerializeField] float spawnRadiusMin = 10f;
     [SerializeField] int numOfMaxEnemies = 20;
 
     List<Transform> spawnPoints = new();
@@ -31,7 +32,10 @@ public class EnemySpawner : MonoBehaviour
         if (playerTransform == null) return;
 
         Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(playerTransform.position, spawnRadius);
+        Gizmos.DrawWireSphere(playerTransform.position, spawnRadiusMax);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(playerTransform.position, spawnRadiusMin);
     }
 
     IEnumerator SpawnerBehaviour()
@@ -51,21 +55,33 @@ public class EnemySpawner : MonoBehaviour
     {
         Vector3 position = SelectSpawnPosition();
 
-        Instantiate(enemyPrefab1, position, Quaternion.identity);
+        GameObject newEnemy = Instantiate(enemyPrefab1, position, Quaternion.identity);
+
+        EnemyBase enemy = newEnemy.GetComponent<EnemyBase>();
+
+        enemy.enemyDied += EnemyDied;
+
+        ++numOfAliveEnemies;
+    }
+
+    private void EnemyDied(EnemyBase enemy)
+    {
+        --numOfAliveEnemies;
+
+        enemy.enemyDied -= EnemyDied;
     }
 
     Vector3 SelectSpawnPosition()
     {
         Vector3 pos = Vector3.zero;
 
-        // Mirar los spawnPositions que estén a menos de spawnRadius del player y elegir uno al azar
         List<Vector3> validSpawnPositions = new();
 
         foreach (Transform spawnPoint in spawnPoints)
         {
             float distance = Vector3.Distance(playerTransform.position, spawnPoint.position);
 
-            if (distance <= spawnRadius) validSpawnPositions.Add(spawnPoint.position);
+            if (distance <= spawnRadiusMax && distance > spawnRadiusMin) validSpawnPositions.Add(spawnPoint.position);
         }
 
         // Deberia hacer que aqui nunca entrase, pero lo dejo por si acaso

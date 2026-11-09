@@ -141,6 +141,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb1e2746b143c024a8e52dfa25502e1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpikeTrap
+  workingTime: 0.5
+  cdTime: 2
+  trapDamage: 5
   spikes:
   - {fileID: 5000579914451765260}
   - {fileID: 5000625640251219428}
@@ -153,9 +156,7 @@ MonoBehaviour:
   - {fileID: 5006495838247622358}
   startYPosition: -1.5
   endYPosition: 0
-  timeToMoveUp: 0.5
-  timeToMoveDown: 2
-  trapDamage: 5
+  trapCollider: {fileID: 4745614739777069681}
 --- !u!65 &4745614739777069681
 BoxCollider:
   m_ObjectHideFlags: 0

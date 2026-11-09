@@ -19,7 +19,7 @@ public class EnemyBase : MonoBehaviour, IDamageable
     [SerializeField] Material damageMaterial;
     [SerializeField] float showDamageTime = 0.2f;
 
-    public event Action enemyDied;
+    public event Action<EnemyBase> enemyDied;
 
     Material initMaterial;
 
@@ -132,7 +132,7 @@ public class EnemyBase : MonoBehaviour, IDamageable
 
     private void Die()
     {
-        enemyDied?.Invoke();
+        enemyDied?.Invoke(this);
 
         Destroy(gameObject);
     }

@@ -7,11 +7,10 @@ public class SpikeTrap : Trap
     [SerializeField] List<Transform> spikes;
     [SerializeField] float startYPosition = 0;
     [SerializeField] float endYPosition = 0;
+    [SerializeField] BoxCollider trapCollider;
 
     protected override void OnTriggerEnter(Collider other)
     {
-        base.OnTriggerEnter(other);
-
         if (other.CompareTag("Enemy"))
         {
             if (state == TrapState.Working)
@@ -22,6 +21,32 @@ public class SpikeTrap : Trap
                 {
                     damageable.GetDamage(trapDamage);
                 }
+            }
+        }
+
+        base.OnTriggerEnter(other);
+    }
+
+    protected override void Activate()
+    {
+        base.Activate();
+
+        Transform trf = trapCollider.transform;
+        Vector3 center = trf.TransformPoint(trapCollider.center);
+        Vector3 halfExtents = Vector3.Scale(trapCollider.size / 2f, trf.lossyScale);
+        Quaternion rotation = trf.rotation;
+
+        Collider[] enemies = Physics.OverlapBox(center, halfExtents, rotation);
+
+        foreach (Collider obj in enemies)
+        {
+            if (!obj.CompareTag("Enemy")) continue;
+
+            IDamageable damageable = obj.gameObject.GetComponent<IDamageable>();
+
+            if (damageable != null)
+            {
+                damageable.GetDamage(trapDamage);
             }
         }
     }
