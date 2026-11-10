@@ -14,23 +14,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4008263434231290, guid: b58fdf950bf832348af4bfaa2fd9f743, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.47
+      value: -1.5
       objectReference: {fileID: 0}
     - target: {fileID: 4036345505925138, guid: b58fdf950bf832348af4bfaa2fd9f743, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.47
+      value: -1.5
       objectReference: {fileID: 0}
     - target: {fileID: 4046807222424656, guid: b58fdf950bf832348af4bfaa2fd9f743, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.47
+      value: -1.5
       objectReference: {fileID: 0}
     - target: {fileID: 4363820140832408, guid: b58fdf950bf832348af4bfaa2fd9f743, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.47
+      value: -1.5
       objectReference: {fileID: 0}
     - target: {fileID: 4616488554291980, guid: b58fdf950bf832348af4bfaa2fd9f743, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.47
+      value: -1.5
       objectReference: {fileID: 0}
     - target: {fileID: 4753028538822310, guid: b58fdf950bf832348af4bfaa2fd9f743, type: 3}
       propertyPath: m_LocalPosition.x
@@ -74,19 +74,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4803314916592114, guid: b58fdf950bf832348af4bfaa2fd9f743, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.47
+      value: -1.5
       objectReference: {fileID: 0}
     - target: {fileID: 4809595351350106, guid: b58fdf950bf832348af4bfaa2fd9f743, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.47
+      value: -1.5
       objectReference: {fileID: 0}
     - target: {fileID: 4860764220213462, guid: b58fdf950bf832348af4bfaa2fd9f743, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.47
+      value: -1.5
       objectReference: {fileID: 0}
     - target: {fileID: 4875821021075144, guid: b58fdf950bf832348af4bfaa2fd9f743, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.47
+      value: -1.5
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114953712324284294, guid: b58fdf950bf832348af4bfaa2fd9f743, type: 3}

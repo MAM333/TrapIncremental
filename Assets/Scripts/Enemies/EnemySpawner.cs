@@ -27,16 +27,16 @@ public class EnemySpawner : MonoBehaviour
         StartCoroutine(SpawnerBehaviour());
     }
 
-    private void OnDrawGizmos()
-    {
-        if (playerTransform == null) return;
+    //private void OnDrawGizmos()
+    //{
+    //    if (playerTransform == null) return;
 
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(playerTransform.position, spawnRadiusMax);
+    //    Gizmos.color = Color.green;
+    //    Gizmos.DrawWireSphere(playerTransform.position, spawnRadiusMax);
 
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(playerTransform.position, spawnRadiusMin);
-    }
+    //    Gizmos.color = Color.red;
+    //    Gizmos.DrawWireSphere(playerTransform.position, spawnRadiusMin);
+    //}
 
     IEnumerator SpawnerBehaviour()
     {

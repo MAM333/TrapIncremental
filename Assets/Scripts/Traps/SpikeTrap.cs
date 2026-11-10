@@ -51,6 +51,18 @@ public class SpikeTrap : Trap
         }
     }
 
+    private void OnDrawGizmos()
+    {
+        if (trapCollider == null) return;
+
+        Gizmos.color = Color.red;
+        Gizmos.matrix = trapCollider.transform.localToWorldMatrix;
+
+        Gizmos.DrawWireCube(trapCollider.center, trapCollider.size);
+
+        Gizmos.matrix = Matrix4x4.identity;
+    }
+
     protected override void Work()
     {
         float yPosAct = Mathf.Lerp(endYPosition, startYPosition, (timer / workingTime));
