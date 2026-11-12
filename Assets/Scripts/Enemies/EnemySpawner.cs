@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,8 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] float spawnRadiusMax = 30f;
     [SerializeField] float spawnRadiusMin = 10f;
     [SerializeField] int numOfMaxEnemies = 20;
+
+    public event Action<int> EnemyDead;
 
     List<Transform> spawnPoints = new();
     Transform playerTransform;
@@ -68,6 +71,9 @@ public class EnemySpawner : MonoBehaviour
     {
         --numOfAliveEnemies;
 
+        int points = enemy.GetNumOfPoints();
+        EnemyDead?.Invoke(points);
+
         enemy.enemyDied -= EnemyDied;
     }
 
@@ -87,12 +93,12 @@ public class EnemySpawner : MonoBehaviour
         // Deberia hacer que aqui nunca entrase, pero lo dejo por si acaso
         if (validSpawnPositions.Count == 0)
         {
-            int rand = Random.Range(0, spawnPoints.Count);
+            int rand = UnityEngine.Random.Range(0, spawnPoints.Count);
             pos = spawnPoints[rand].position;
         }
         else
         {
-            int rand = Random.Range(0, validSpawnPositions.Count);
+            int rand = UnityEngine.Random.Range(0, validSpawnPositions.Count);
             pos = validSpawnPositions[rand];
         }
 

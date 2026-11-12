@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 332cc1e2eea95294191824f0a46ef729, type: 3}
   m_Name: SpikeTrap
   m_EditorClassIdentifier: Assembly-CSharp::TrapsSCRO
+  id: 0
   name: SpikeTrap
   prefab: {fileID: 5003117502839668080, guid: 128d66a4eed86ec49b79e3db48ec28fc, type: 3}
   yPosition: 0.45

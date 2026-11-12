@@ -9,8 +9,15 @@ public class PlayerStats : MonoBehaviour, IDamageable
     public event Action<int, int> lifeChanged;
     public event Action<int> die;
 
+    public void SetMaxLife(int life)
+    {
+        maxLife = life;
+    }
+
     private void Start()
     {
+        life = maxLife;
+
         lifeChanged?.Invoke(life, maxLife);
     }
 

@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyBase : MonoBehaviour, IDamageable
 {
     [Header("Stats")]
+    [SerializeField] int numOfPoints = 1;
     [SerializeField] int life = 10;
     [SerializeField] float touchDistance = 2f;
     [SerializeField] float moveSpeed = 5f;
@@ -128,6 +129,11 @@ public class EnemyBase : MonoBehaviour, IDamageable
             finalDirection.Normalize();
             transform.position += finalDirection * moveSpeed * Time.deltaTime;
         }
+    }
+
+    public int GetNumOfPoints()
+    {
+        return numOfPoints;
     }
 
     private void Die()

@@ -6,7 +6,16 @@ public class ExplosiveTrap : Trap
 
     [Header("ExplosiveTrap")]
     [SerializeField] ParticleSystem explosionParticles;
+    [SerializeField] Material activeMaterial;
+    [SerializeField] Material notActiveMaterial;
     [SerializeField] float explosionRadius = 2f;
+
+    MeshRenderer mesh;
+
+    private void Awake()
+    {
+        mesh = GetComponent<MeshRenderer>();
+    }
 
     private void OnDrawGizmosSelected()
     {
@@ -20,12 +29,16 @@ public class ExplosiveTrap : Trap
         
         base.Activate();
 
+        //Para reiniciarlo bien, ya que si no no aparece en ocasiones
         explosionParticles.Stop();
+        explosionParticles.gameObject.SetActive(false);
+        explosionParticles.gameObject.SetActive(true);
+
         explosionParticles.Play();
 
         if (state == TrapState.Working)
         {
-            Collider[] enemies = Physics.OverlapSphere(transform.position, explosionRadius);
+            Collider[] enemies = Physics.OverlapSphere(transform.position, explosionRadius * scaleMultiplier);
 
             foreach (Collider enemy in enemies)
             {
@@ -35,10 +48,19 @@ public class ExplosiveTrap : Trap
 
                     if (damageable != null)
                     {
-                        damageable.GetDamage(trapDamage);
+                        DoDamage(damageable);
                     }
                 }
             }
         }
+
+        mesh.material = notActiveMaterial;
+    }
+
+    protected override void Recharge()
+    {
+        base.Recharge();
+
+        if (state == TrapState.Ready) mesh.material = activeMaterial;
     }
 }

@@ -7,6 +7,7 @@ public struct InventoryTrap
 {
     public TrapsSCRO trap;
     public int numOfTraps;
+    public float scale;
 }
 
 public class PlayerTraps : MonoBehaviour
@@ -21,23 +22,20 @@ public class PlayerTraps : MonoBehaviour
         trapsChanged?.Invoke(traps);
     }
 
-    public void AddTrap(TrapsSCRO trap, int numOfNewTraps)
+    public void SetScaleMultiplier(int id, float scale)
     {
-        switch (trap.name)
-        {
-            case "SpikeTrap": AddTrap(0, numOfNewTraps); break;
-            case "ExplosiveTrap": AddTrap(1, numOfNewTraps); break;
-            case "ThunderTrap": AddTrap(2, numOfNewTraps); break;
-        }
-
-        trapsChanged?.Invoke(traps);
+        InventoryTrap trap = traps[id];
+        trap.scale = scale;
+        traps[id] = trap;
     }
 
-    private void AddTrap(int index, int numOfNewTraps)
+    public void AddTrap(int index, int numOfNewTraps)
     {
         InventoryTrap trap = traps[index];
         trap.numOfTraps += numOfNewTraps;
         traps[index] = trap;
+        
+        trapsChanged?.Invoke(traps);
     }
 
     public void UseTrap(int which)
@@ -58,6 +56,9 @@ public class PlayerTraps : MonoBehaviour
 
         Vector3 pos = newObj.transform.position;
         newObj.transform.position = new Vector3(pos.x, trap.trap.yPosition, pos.z);
+        
+        Trap trp = newObj.GetComponent<Trap>();
+        trp.SetScaleMultiplier(trap.scale);
 
         trapsChanged?.Invoke(traps);
     }

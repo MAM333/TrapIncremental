@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adf6e40239cbb4d4bbc0383abe4c47f6, type: 3}
+  m_Name: PlayerUpgrades
+  m_EditorClassIdentifier: Assembly-CSharp::SCRO_Upgrades
+  upgrades:
+  - which: 0
+    upgrade: {fileID: 11400000, guid: 010025f1952570d4bb9787b5d0a6938c, type: 2}
+  - which: 0
+    upgrade: {fileID: 11400000, guid: 764f4825d3297904397e0e31300be907, type: 2}
+  - which: 0
+    upgrade: {fileID: 11400000, guid: 7c11ead16a53f9a448adf84f2a4db043, type: 2}
+  - which: 0
+    upgrade: {fileID: 11400000, guid: 93942d92f98d83848b3e054c377e3030, type: 2}
+  - which: 0
+    upgrade: {fileID: 11400000, guid: 050fd4dc002ee5042a7f05166fb68602, type: 2}
+  - which: 0
+    upgrade: {fileID: 11400000, guid: 4f19fde94087a064baa87f9ac7bc4f00, type: 2}
+  - which: 0
+    upgrade: {fileID: 11400000, guid: 38a2821d0e028174890fb92230a0af41, type: 2}
+  - which: 0
+    upgrade: {fileID: 11400000, guid: 41ced3ba4491e8946aa11b9b9762ff00, type: 2}

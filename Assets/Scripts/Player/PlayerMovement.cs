@@ -15,11 +15,17 @@ public class PlayerMovement : MonoBehaviour
     Vector2 rawMove;
     Vector2 rawLook;
     float cameraRotationX;
+    bool canMove = true;
 
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
         playerTraps = GetComponent<PlayerTraps>();
+    }
+
+    public void SetMovementSpeed(float speed)
+    {
+        moveSpeed = speed;
     }
 
     private void Start()
@@ -29,6 +35,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        if (!canMove) return;
+
         HandleLook();
         HandleMovement();
     }
@@ -81,5 +89,13 @@ public class PlayerMovement : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+    }
+
+    public void DontMove()
+    {
+        canMove = false;
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 }

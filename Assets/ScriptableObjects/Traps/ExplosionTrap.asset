@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 332cc1e2eea95294191824f0a46ef729, type: 3}
   m_Name: ExplosionTrap
   m_EditorClassIdentifier: Assembly-CSharp::TrapsSCRO
+  id: 1
   name: ExplosiveTrap
   prefab: {fileID: 5578612726824345911, guid: d6279c9a636252f4e9bf674456e05161, type: 3}
   yPosition: 0.55

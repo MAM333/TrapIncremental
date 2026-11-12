@@ -7,11 +7,26 @@ public abstract class Trap : MonoBehaviour
     [SerializeField] protected float workingTime = 0.5f;
     [SerializeField] protected float cdTime = 2f;
     [SerializeField] protected int trapDamage = 5;
+    [SerializeField] protected float scaleMultiplier = 1;
+    [SerializeField] protected float critPercentage = 0;
 
     protected int numOfEnemiesInTrap = 0;
     protected TrapState state = TrapState.Ready;
 
     protected float timer = 0;
+
+    public void SetScaleMultiplier(float mult)
+    {
+        scaleMultiplier = mult;
+
+        Vector3 scale = transform.localScale;
+        transform.localScale = new Vector3(scale.x * mult, scale.y * mult, scale.z * mult);
+    }
+
+    public void SetCritPercentage(float crit)
+    {
+        critPercentage = crit;
+    }
 
     protected virtual void Update()
     {
@@ -70,5 +85,18 @@ public abstract class Trap : MonoBehaviour
             if (numOfEnemiesInTrap > 0) Activate();
             numOfEnemiesInTrap = 0;
         }
+    }
+
+    protected virtual void DoDamage(IDamageable damageable)
+    {
+        int multiplier = 1;
+
+        if (critPercentage != 0)
+        {
+            int rand = Random.Range(0, 100);
+            if (rand < critPercentage) multiplier = 2;
+        }
+
+        damageable.GetDamage(trapDamage * multiplier);
     }
 }
