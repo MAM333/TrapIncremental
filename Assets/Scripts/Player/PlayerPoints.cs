@@ -17,7 +17,8 @@ public class PlayerPoints : MonoBehaviour
 
     private void Start()
     {
-        SumPoints(PlayerSaveManager.instance.GetPoints());
+        points = PlayerSaveManager.instance.GetPoints();
+        pointsChanged?.Invoke(points);
     }
 
     public void SumPoints(int pts)

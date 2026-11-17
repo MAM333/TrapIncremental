@@ -6,7 +6,7 @@ public class PlayerPointsUI : MonoBehaviour
     [SerializeField] PlayerPoints playerPoints;
     [SerializeField] TextMeshProUGUI pointsText;
     
-    private void Start()
+    private void Awake()
     {
         playerPoints.pointsChanged += ChangePointsText;
     }

@@ -122,7 +122,7 @@ GameObject:
   m_Component:
   - component: {fileID: 409523316573095758}
   - component: {fileID: 7298254606809298538}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: NumsText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -289,9 +289,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyBase
   numOfPoints: 1
-  life: 10
+  baseLife: 5
   touchDistance: 1
-  moveSpeed: 3.5
+  baseSpeed: 3.5
   damagePerMilisecond: 1
   separationRadius: 0.5
   separationWeight: 2
@@ -425,7 +425,7 @@ GameObject:
   - component: {fileID: 8598458936628299102}
   - component: {fileID: 1430513461299566933}
   - component: {fileID: 1941173434283614529}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: EnemyDamageText
   m_TagString: Untagged
   m_Icon: {fileID: 0}

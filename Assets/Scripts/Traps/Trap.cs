@@ -6,7 +6,8 @@ public abstract class Trap : MonoBehaviour
     [Header("General")]
     [SerializeField] protected float workingTime = 0.5f;
     [SerializeField] protected float cdTime = 2f;
-    
+    [SerializeField] protected BoxCollider trapCollider;
+
     // Automatic by upgrades
     protected int trapDamage = 5;
     protected float scaleMultiplier = 1;
@@ -45,20 +46,10 @@ public abstract class Trap : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            numOfEnemiesInTrap++;
-
             if (state == TrapState.Ready)
             {
                 Activate();
             }
-        }
-    }
-
-    protected virtual void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Enemy"))
-        {
-            --numOfEnemiesInTrap;
         }
     }
 
@@ -89,9 +80,32 @@ public abstract class Trap : MonoBehaviour
         {
             state = TrapState.Ready;
             timer = 0;
-            if (numOfEnemiesInTrap > 0) Activate();
-            numOfEnemiesInTrap = 0;
+
+            // Si hay enemigos que se active
+            //Activate();
+            bool enemiesNearby = EnemiesNearby();
+            if (enemiesNearby)
+            {
+                Activate();
+            }
         }
+    }
+
+    bool EnemiesNearby()
+    {
+        Transform trf = trapCollider.transform;
+        Vector3 center = trf.TransformPoint(trapCollider.center);
+        Vector3 halfExtents = Vector3.Scale(trapCollider.size / 2f, trf.lossyScale);
+        Quaternion rotation = trf.rotation;
+
+        Collider[] enemies = Physics.OverlapBox(center, halfExtents, rotation);
+
+        foreach (Collider obj in enemies)
+        {
+            if (obj.CompareTag("Enemy")) return true;
+        }
+
+        return false;
     }
 
     protected virtual void DoDamage(IDamageable damageable)

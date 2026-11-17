@@ -310,8 +310,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ExplosiveTrap
   workingTime: 0
   cdTime: 1
-  trapDamage: 5
-  scaleMultiplier: 1
+  trapCollider: {fileID: 6995807337234126581}
   explosionParticles: {fileID: 5497531920734555622}
   activeMaterial: {fileID: 2100000, guid: d82a8c078ce39764595eed69e3e3467d, type: 2}
   notActiveMaterial: {fileID: 2100000, guid: 3194748732832a849867577b18c72222, type: 2}

@@ -7,7 +7,6 @@ public class SpikeTrap : Trap
     [SerializeField] List<Transform> spikes;
     [SerializeField] float startYPosition = 0;
     [SerializeField] float endYPosition = 0;
-    [SerializeField] BoxCollider trapCollider;
 
     protected override void OnTriggerEnter(Collider other)
     {

@@ -22,6 +22,7 @@ public class EnemySpawner : MonoBehaviour
 
     public event Action<int> EnemyDead;
     public event Action<int> SecondPassed;
+    public event Action<int, int> WavePassed;
 
     List<Transform> spawnPoints = new();
     List<EnemyBase> enemies = new();
@@ -85,6 +86,8 @@ public class EnemySpawner : MonoBehaviour
             }
 
             ++incrementNumber;
+
+            WavePassed?.Invoke(incrementNumber, maxNumOfIncrements);
 
             foreach (EnemyBase enemyBase in enemies)
             {
