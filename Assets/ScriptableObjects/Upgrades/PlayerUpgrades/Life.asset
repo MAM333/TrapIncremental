@@ -18,3 +18,7 @@ MonoBehaviour:
     value: 10
   - costInPoints: 20
     value: 30
+  - costInPoints: 100
+    value: 60
+  - costInPoints: 500
+    value: 120

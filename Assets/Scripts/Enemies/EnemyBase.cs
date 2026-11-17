@@ -6,9 +6,9 @@ public class EnemyBase : MonoBehaviour, IDamageable
 {
     [Header("Stats")]
     [SerializeField] int numOfPoints = 1;
-    [SerializeField] int life = 10;
+    [SerializeField] int baseLife = 10;
     [SerializeField] float touchDistance = 2f;
-    [SerializeField] float moveSpeed = 5f;
+    [SerializeField] float baseSpeed = 3.5f;
     [SerializeField] int damagePerMilisecond = 1;
 
     [Header("Separation")]
@@ -24,11 +24,21 @@ public class EnemyBase : MonoBehaviour, IDamageable
 
     public event Action<EnemyBase> enemyDied;
 
+    float moveSpeed = 0;
+    int life = 10000;
+
     Material initMaterial;
 
     Transform playerTransform;
     IDamageable playerDamageable;
     MeshRenderer mesh;
+
+    private void Awake()
+    {
+        moveSpeed = baseSpeed;
+        life = baseLife;
+    }
+
     void Start()
     {
         playerTransform = PlayerTransform.instance.GetPlayerTransform();
@@ -36,6 +46,16 @@ public class EnemyBase : MonoBehaviour, IDamageable
         mesh = GetComponent<MeshRenderer>();
 
         initMaterial = mesh.material;
+    }
+
+    public void AddVelocity(float vel)
+    {
+        moveSpeed = baseSpeed + vel;
+    }
+
+    public void AddHp(int hp)
+    {
+        life = baseLife + hp - (baseLife - life);
     }
 
     bool touchingPlayer = false;

@@ -5,18 +5,31 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
+    [Header("BaseInfo")]
     [SerializeField] GameObject enemyPrefab1;
     [SerializeField] Transform spawnPointsParent;
-    [SerializeField] float timeBetweenSpawns = 1f;
     [SerializeField] float spawnRadiusMax = 30f;
     [SerializeField] float spawnRadiusMin = 10f;
+    [SerializeField] float timeBetweenSpawns = 1f;
     [SerializeField] int numOfMaxEnemies = 20;
 
+    [Header("Increment")]
+    [SerializeField] float timeBetweenIncrements = 15f;
+    [SerializeField] int maxNumOfIncrements = 10;
+    [SerializeField] float incrementOfEnemyVelocity = 0.5f;
+    [SerializeField] int incrementOfEnemyLife = 5;
+    [SerializeField] float substractTimeBetweenSpawns = 0.5f;
+
     public event Action<int> EnemyDead;
+    public event Action<int> SecondPassed;
 
     List<Transform> spawnPoints = new();
+    List<EnemyBase> enemies = new();
     Transform playerTransform;
     int numOfAliveEnemies = 0;
+
+    //Increments
+    int incrementNumber = 0;
 
     private void Start()
     {
@@ -28,6 +41,7 @@ public class EnemySpawner : MonoBehaviour
         playerTransform = PlayerTransform.instance.GetPlayerTransform();
 
         StartCoroutine(SpawnerBehaviour());
+        StartCoroutine(IncrementalBehaviour());
     }
 
     //private void OnDrawGizmos()
@@ -54,6 +68,37 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
+    IEnumerator IncrementalBehaviour()
+    {
+        incrementNumber = 0;
+
+        while (incrementNumber < maxNumOfIncrements)
+        {
+            int seconds = (int)timeBetweenIncrements;
+            SecondPassed?.Invoke(seconds);
+
+            while (seconds > 0)
+            {
+                yield return new WaitForSeconds(1f);
+                seconds--;
+                SecondPassed?.Invoke(seconds);
+            }
+
+            ++incrementNumber;
+
+            foreach (EnemyBase enemyBase in enemies)
+            {
+                enemyBase.AddVelocity(incrementNumber * incrementOfEnemyVelocity);
+                enemyBase.AddHp(incrementNumber * incrementOfEnemyLife);
+            }
+
+            timeBetweenSpawns -= substractTimeBetweenSpawns;
+
+            // Un poco de buffer
+            yield return new WaitForSeconds(1f);
+        }
+    }
+
     void Spawn()
     {
         Vector3 position = SelectSpawnPosition();
@@ -62,7 +107,11 @@ public class EnemySpawner : MonoBehaviour
 
         EnemyBase enemy = newEnemy.GetComponent<EnemyBase>();
 
+        enemy.AddVelocity(incrementNumber * incrementOfEnemyVelocity);
+        enemy.AddHp(incrementNumber * incrementOfEnemyLife);
         enemy.enemyDied += EnemyDied;
+
+        enemies.Add(enemy);
 
         ++numOfAliveEnemies;
     }
@@ -75,6 +124,8 @@ public class EnemySpawner : MonoBehaviour
         EnemyDead?.Invoke(points);
 
         enemy.enemyDied -= EnemyDied;
+
+        enemies.Remove(enemy);
     }
 
     Vector3 SelectSpawnPosition()

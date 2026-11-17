@@ -15,6 +15,6 @@ MonoBehaviour:
   name: DamageThunderTrap
   upgrades:
   - costInPoints: 0
-    value: 5
-  - costInPoints: 80
-    value: 10
+    value: 40
+  - costInPoints: 400
+    value: 80

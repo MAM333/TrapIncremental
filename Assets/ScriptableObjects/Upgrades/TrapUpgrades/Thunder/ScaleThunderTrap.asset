@@ -16,5 +16,7 @@ MonoBehaviour:
   upgrades:
   - costInPoints: 0
     value: 1
-  - costInPoints: 80
+  - costInPoints: 500
     value: 1.5
+  - costInPoints: 1000
+    value: 2

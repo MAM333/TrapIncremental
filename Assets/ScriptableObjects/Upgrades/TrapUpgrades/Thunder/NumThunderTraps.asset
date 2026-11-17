@@ -15,10 +15,10 @@ MonoBehaviour:
   name: NumThunderTraps
   upgrades:
   - costInPoints: 0
+    value: 0
+  - costInPoints: 150
     value: 1
-  - costInPoints: 15
+  - costInPoints: 150
     value: 2
-  - costInPoints: 15
-    value: 3
-  - costInPoints: 30
+  - costInPoints: 300
     value: 4

@@ -15,6 +15,6 @@ MonoBehaviour:
   name: DamageExplosiveTrap
   upgrades:
   - costInPoints: 0
-    value: 5
-  - costInPoints: 150
     value: 10
+  - costInPoints: 150
+    value: 20
