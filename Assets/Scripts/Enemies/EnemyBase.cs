@@ -19,6 +19,8 @@ public class EnemyBase : MonoBehaviour, IDamageable
     [Header("Other")]
     [SerializeField] Material damageMaterial;
     [SerializeField] float showDamageTime = 0.2f;
+    [SerializeField] GameObject damageText;
+    [SerializeField] Transform nums;
 
     public event Action<EnemyBase> enemyDied;
 
@@ -64,6 +66,8 @@ public class EnemyBase : MonoBehaviour, IDamageable
     {
         mesh.material = damageMaterial;
 
+        Instantiate(damageText, nums);
+
         yield return new WaitForSeconds(showDamageTime);
 
         mesh.material = initMaterial;
@@ -79,11 +83,7 @@ public class EnemyBase : MonoBehaviour, IDamageable
     float timer = 0;
     private void DamagePlayer()
     {
-        if (!touchingPlayer)
-        {
-            timer = 0;
-            return;
-        }
+        if (!touchingPlayer) return;
 
         //Golpear cada x tiempo
         timer -= Time.deltaTime;
@@ -139,6 +139,8 @@ public class EnemyBase : MonoBehaviour, IDamageable
     private void Die()
     {
         enemyDied?.Invoke(this);
+
+        nums.SetParent(null);
 
         Destroy(gameObject);
     }

@@ -5129,6 +5129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSaveManager
   playerStats: {fileID: 11400000, guid: 2213aeca2da1cc744ae04eb13228102b, type: 2}
+  playerUpgrades: {fileID: 0}
 --- !u!1001 &639377168
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9631,8 +9632,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8791914038320197258, guid: 70de0ad6adf8bdb45af9abb6e94eb23e, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6754292b81c7d3b4d97687c836ec9901, type: 3}
+    - target: {fileID: 8791914038320197258, guid: 70de0ad6adf8bdb45af9abb6e94eb23e, type: 3}
       propertyPath: m_Color.a
-      value: 0.49019608
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14702,18 +14707,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 848137246553772427, guid: 80c8bd61794ba74439abdeac49e69d96, type: 3}
-      propertyPath: traps.Array.data[0].numOfTraps
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 848137246553772427, guid: 80c8bd61794ba74439abdeac49e69d96, type: 3}
-      propertyPath: traps.Array.data[1].numOfTraps
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1733973355051333003, guid: 80c8bd61794ba74439abdeac49e69d96, type: 3}
-      propertyPath: maxLife
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 2356944767853914187, guid: 80c8bd61794ba74439abdeac49e69d96, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.12
@@ -14758,29 +14751,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 5497602922820516301, guid: 80c8bd61794ba74439abdeac49e69d96, type: 3}
-      propertyPath: m_Constraints
-      value: 112
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3019290393470914283, guid: 80c8bd61794ba74439abdeac49e69d96, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1767526501}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 80c8bd61794ba74439abdeac49e69d96, type: 3}
---- !u!1 &1767526497 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3019290393470914283, guid: 80c8bd61794ba74439abdeac49e69d96, type: 3}
-  m_PrefabInstance: {fileID: 1767526496}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1767526498 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 848137246553772427, guid: 80c8bd61794ba74439abdeac49e69d96, type: 3}
   m_PrefabInstance: {fileID: 1767526496}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1767526497}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 36dcaceba96827245abfe7786df84268, type: 3}
@@ -14791,7 +14772,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1733973355051333003, guid: 80c8bd61794ba74439abdeac49e69d96, type: 3}
   m_PrefabInstance: {fileID: 1767526496}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1767526497}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 459cd8996e9c0514ca04e327a87a3b18, type: 3}
@@ -14802,26 +14783,23 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4548852095378002201, guid: 80c8bd61794ba74439abdeac49e69d96, type: 3}
   m_PrefabInstance: {fileID: 1767526496}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1767526497}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d40625a7ad281e64abec97b57f567964, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
---- !u!114 &1767526501
+--- !u!114 &1767526501 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 468346762981751912, guid: 80c8bd61794ba74439abdeac49e69d96, type: 3}
+  m_PrefabInstance: {fileID: 1767526496}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1767526497}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 325636da9cdfd9640bac556381c30c47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerPoints
-  points: 0
-  pointsMultiplier: 1
 --- !u!1 &1770113002
 GameObject:
   m_ObjectHideFlags: 0

@@ -27,6 +27,11 @@ public class SetPlayerUpgrades : MonoBehaviour
         playerPoints.SetPointsMultiplier((int)whichUpgrade.upgrade.upgrades[whichUpgrade.which].value);
     }
 
+    public void SetCritPercentage(WhichUpgrade whichUpgrade)
+    {
+        playerTraps.SetCritPercentage(whichUpgrade.upgrade.upgrades[whichUpgrade.which].value);
+    }
+
     public void SetNumOfSpikeTraps(WhichUpgrade whichUpgrade)
     {
         playerTraps.AddTrap(0, (int)whichUpgrade.upgrade.upgrades[whichUpgrade.which].value);
@@ -37,6 +42,11 @@ public class SetPlayerUpgrades : MonoBehaviour
         playerTraps.AddTrap(1, (int)whichUpgrade.upgrade.upgrades[whichUpgrade.which].value);
     }
 
+    public void SetNumOfThunderTraps(WhichUpgrade whichUpgrade)
+    {
+        playerTraps.AddTrap(2, (int)whichUpgrade.upgrade.upgrades[whichUpgrade.which].value);
+    }
+
     public void SetScaleSpikeTraps(WhichUpgrade whichUpgrade)
     {
         playerTraps.SetScaleMultiplier(0, whichUpgrade.upgrade.upgrades[whichUpgrade.which].value);
@@ -45,5 +55,25 @@ public class SetPlayerUpgrades : MonoBehaviour
     public void SetScaleExplosiveTraps(WhichUpgrade whichUpgrade)
     {
         playerTraps.SetScaleMultiplier(1, whichUpgrade.upgrade.upgrades[whichUpgrade.which].value);
+    }
+
+    public void SetScaleThunderTraps(WhichUpgrade whichUpgrade)
+    {
+        playerTraps.SetScaleMultiplier(2, whichUpgrade.upgrade.upgrades[whichUpgrade.which].value);
+    }
+
+    public void SetDamageSpikeTraps(WhichUpgrade whichUpgrade)
+    {
+        playerTraps.SetDamage(0, (int)whichUpgrade.upgrade.upgrades[whichUpgrade.which].value);
+    }
+
+    public void SetDamageExplosiveTraps(WhichUpgrade whichUpgrade)
+    {
+        playerTraps.SetDamage(1, (int)whichUpgrade.upgrade.upgrades[whichUpgrade.which].value);
+    }
+
+    public void SetDamageThunderTraps(WhichUpgrade whichUpgrade)
+    {
+        playerTraps.SetDamage(2, (int)whichUpgrade.upgrade.upgrades[whichUpgrade.which].value);
     }
 }

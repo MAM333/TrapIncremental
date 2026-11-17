@@ -6,9 +6,11 @@ public abstract class Trap : MonoBehaviour
     [Header("General")]
     [SerializeField] protected float workingTime = 0.5f;
     [SerializeField] protected float cdTime = 2f;
-    [SerializeField] protected int trapDamage = 5;
-    [SerializeField] protected float scaleMultiplier = 1;
-    [SerializeField] protected float critPercentage = 0;
+    
+    // Automatic by upgrades
+    protected int trapDamage = 5;
+    protected float scaleMultiplier = 1;
+    protected float critPercentage = 0;
 
     protected int numOfEnemiesInTrap = 0;
     protected TrapState state = TrapState.Ready;
@@ -26,6 +28,11 @@ public abstract class Trap : MonoBehaviour
     public void SetCritPercentage(float crit)
     {
         critPercentage = crit;
+    }
+
+    public void SetDamage(int damage)
+    {
+        trapDamage = damage;
     }
 
     protected virtual void Update()

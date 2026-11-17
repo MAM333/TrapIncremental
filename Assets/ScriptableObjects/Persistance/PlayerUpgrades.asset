@@ -29,3 +29,13 @@ MonoBehaviour:
     upgrade: {fileID: 11400000, guid: 38a2821d0e028174890fb92230a0af41, type: 2}
   - which: 0
     upgrade: {fileID: 11400000, guid: 41ced3ba4491e8946aa11b9b9762ff00, type: 2}
+  - which: 0
+    upgrade: {fileID: 11400000, guid: 18d48632b675e90489131e9448f1652c, type: 2}
+  - which: 0
+    upgrade: {fileID: 11400000, guid: cdcb270d3bbb0ea47907fb89637964f8, type: 2}
+  - which: 0
+    upgrade: {fileID: 11400000, guid: 092f5aea73886d6429d5f87cb1e827ad, type: 2}
+  - which: 0
+    upgrade: {fileID: 11400000, guid: 27033e45d7c2b4845b8856dc086fb082, type: 2}
+  - which: 0
+    upgrade: {fileID: 11400000, guid: bd76142394f147a40838465c8a548550, type: 2}

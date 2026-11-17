@@ -5,6 +5,7 @@ public class PlayerSaveManager : MonoBehaviour
     public static PlayerSaveManager instance;
 
     public SCRO_PlayerStats playerStats;
+    public SCRO_Upgrades playerUpgrades;
 
     private void Awake()
     {
@@ -21,5 +22,12 @@ public class PlayerSaveManager : MonoBehaviour
     public int GetPoints()
     {
         return playerStats.points;
+    }
+
+    public void ActualizeUpgrade(int index, int which)
+    {
+        WhichUpgrade whichUpg = playerUpgrades.upgrades[index];
+        whichUpg.which = which;
+        playerUpgrades.upgrades[index] = whichUpg;
     }
 }

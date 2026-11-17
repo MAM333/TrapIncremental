@@ -23,6 +23,9 @@ public class ManagePlayerUpgrades : MonoBehaviour
                 case "Points":
                     setPlayerUpgrades.SetMultiplierPoints(whichUpgrade);
                     break;
+                case "Crit":
+                    setPlayerUpgrades.SetCritPercentage(whichUpgrade);
+                    break;
 
                 //Traps
                 case "NumSpikeTraps":
@@ -31,11 +34,28 @@ public class ManagePlayerUpgrades : MonoBehaviour
                 case "NumExplosiveTraps":
                     setPlayerUpgrades.SetNumOfExplosiveTraps(whichUpgrade);
                     break;
+                case "NumThunderTraps":
+                    setPlayerUpgrades.SetNumOfThunderTraps(whichUpgrade);
+                    break;
+
                 case "ScaleSpikeTrap":
                     setPlayerUpgrades.SetScaleSpikeTraps(whichUpgrade);
                     break;
                 case "ScaleExplosiveTrap":
                     setPlayerUpgrades.SetScaleExplosiveTraps(whichUpgrade);
+                    break;
+                case "ScaleThunderTrap":
+                    setPlayerUpgrades.SetScaleThunderTraps(whichUpgrade);
+                    break;
+
+                case "DamageSpikeTrap":
+                    setPlayerUpgrades.SetDamageSpikeTraps(whichUpgrade);
+                    break;
+                case "DamageExplosiveTrap":
+                    setPlayerUpgrades.SetDamageExplosiveTraps(whichUpgrade);
+                    break;
+                case "DamageThunderTrap":
+                    setPlayerUpgrades.SetDamageThunderTraps(whichUpgrade);
                     break;
             }
         }

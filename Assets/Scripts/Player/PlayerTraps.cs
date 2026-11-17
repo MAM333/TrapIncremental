@@ -8,6 +8,7 @@ public struct InventoryTrap
     public TrapsSCRO trap;
     public int numOfTraps;
     public float scale;
+    public int damage;
 }
 
 public class PlayerTraps : MonoBehaviour
@@ -16,6 +17,8 @@ public class PlayerTraps : MonoBehaviour
 
     public event Action<List<InventoryTrap>> trapsChanged;
     public event Action invalidPlacement;
+
+    float critPercentage = 0;
 
     private void Start()
     {
@@ -29,6 +32,18 @@ public class PlayerTraps : MonoBehaviour
         traps[id] = trap;
     }
 
+    public void SetDamage(int id, int damage)
+    {
+        InventoryTrap trap = traps[id];
+        trap.damage = damage;
+        traps[id] = trap;
+    }
+
+    public void SetCritPercentage(float crit)
+    {
+        critPercentage = crit;
+    }
+
     public void AddTrap(int index, int numOfNewTraps)
     {
         InventoryTrap trap = traps[index];
@@ -40,6 +55,8 @@ public class PlayerTraps : MonoBehaviour
 
     public void UseTrap(int which)
     {
+        if (which >= traps.Count) return;
+
         InventoryTrap trap = traps[which];
 
         if (trap.numOfTraps <= 0)
@@ -59,6 +76,8 @@ public class PlayerTraps : MonoBehaviour
         
         Trap trp = newObj.GetComponent<Trap>();
         trp.SetScaleMultiplier(trap.scale);
+        trp.SetCritPercentage(critPercentage);
+        trp.SetDamage(trap.damage);
 
         trapsChanged?.Invoke(traps);
     }
