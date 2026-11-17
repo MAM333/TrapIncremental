@@ -53,7 +53,7 @@ public class EnemyBase : MonoBehaviour, IDamageable
         life -= damage;
 
         StopAllCoroutines();
-        StartCoroutine(ShowDamage());
+        StartCoroutine(ShowDamage(damage));
         
         if (life <= 0)
         {
@@ -62,11 +62,12 @@ public class EnemyBase : MonoBehaviour, IDamageable
         }
     }
 
-    IEnumerator ShowDamage()
+    IEnumerator ShowDamage(int damage)
     {
         mesh.material = damageMaterial;
 
-        Instantiate(damageText, nums);
+        DamageText_UI text = Instantiate(damageText, nums).GetComponent<DamageText_UI>();
+        text.SetText(damage);
 
         yield return new WaitForSeconds(showDamageTime);
 

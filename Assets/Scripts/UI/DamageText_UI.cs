@@ -18,6 +18,11 @@ public class DamageText_UI : MonoBehaviour
         StartCoroutine(MoveAndDisappear());
     }
 
+    public void SetText(int damage)
+    {
+        textMesh.text = damage.ToString();
+    }
+
     IEnumerator MoveAndDisappear()
     {
         float timer = timeShowing;
