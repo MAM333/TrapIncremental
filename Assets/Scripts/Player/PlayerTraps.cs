@@ -80,6 +80,8 @@ public class PlayerTraps : MonoBehaviour
         trp.SetDamage(trap.damage);
 
         trapsChanged?.Invoke(traps);
+
+        AudioManager.instance.PlayTrapPlace();
     }
 
     public List<InventoryTrap> GetPlayerTraps()

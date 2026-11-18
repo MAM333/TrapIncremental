@@ -19,17 +19,21 @@ public class MusicManager : MonoBehaviour
     private void Awake()
     {
         if (instance != null) Destroy(gameObject);
+        else instance = this;
+    }
 
-        instance = this;
-
+    private void Start()
+    {
         DontDestroyOnLoad(this);
 
         audioSource = GetComponent<AudioSource>();
+
+        PlayMainMenu();
     }
 
     void PlayClip(AudioClip clip, float volume)
     {
-        if (clip == audioSource.clip) return;
+        if (clip == audioSource.clip) return; 
 
         audioSource.Stop();
         audioSource.clip = clip;

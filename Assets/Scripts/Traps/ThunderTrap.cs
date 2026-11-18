@@ -27,6 +27,8 @@ public class ThunderTrap : Trap
 
         base.Activate();
 
+        AudioManager.instance.PlayThunderTrap();
+
         //Para reiniciarlo bien, ya que si no no aparece en ocasiones
         thunderParticles.Stop();
         thunderParticles.gameObject.SetActive(false);

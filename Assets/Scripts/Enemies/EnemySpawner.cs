@@ -106,6 +106,8 @@ public class EnemySpawner : MonoBehaviour
 
             // Un poco de buffer
             yield return new WaitForSeconds(1f);
+
+            AudioManager.instance.PlayNextRound();
         }
 
         // Spawneo del boss en X segundos

@@ -29,6 +29,8 @@ public class ExplosiveTrap : Trap
         
         base.Activate();
 
+        AudioManager.instance.PlayExplosiveTrap();
+
         //Para reiniciarlo bien, ya que si no no aparece en ocasiones
         explosionParticles.Stop();
         explosionParticles.gameObject.SetActive(false);

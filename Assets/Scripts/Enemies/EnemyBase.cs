@@ -170,6 +170,8 @@ public class EnemyBase : MonoBehaviour, IDamageable
 
         nums.SetParent(null);
 
+        AudioManager.instance.PlayEnemyDied();
+
         Destroy(gameObject);
     }
 }

@@ -26,6 +26,8 @@ public class SceneManagement : MonoBehaviour
 
     public void GoToMainMenu()
     {
+        MusicManager.instance.PlayMainMenu();
+
         SceneManager.LoadScene(0);
     }
 }

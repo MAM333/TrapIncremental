@@ -28,6 +28,9 @@ public class PlayerStats : MonoBehaviour, IDamageable
         if (life <= 0)
         {
             life = 0;
+
+            AudioManager.instance.PlayDeadSound();
+
             die?.Invoke(maxLife);
         }
         else lifeChanged?.Invoke(life, maxLife);

@@ -44,6 +44,16 @@ public class Upgrade_UI : MonoBehaviour
     {
         bool success = menuInfo.BuyUpgrade(upgrade);
 
-        if (success) Refresh();
+        if (success) 
+        { 
+            Refresh();
+
+            AudioManager.instance.PlayUpgrade();
+        }
+        else
+        {
+
+            AudioManager.instance.PlayNotUpgrade();
+        }
     }
 }

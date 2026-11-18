@@ -10,8 +10,6 @@ public class MainMenu : MonoBehaviour
     private void Awake()
     {
         GoToMainPage();
-
-        MusicManager.instance.PlayMainMenu();
     }
 
     void GoToPage(int page)

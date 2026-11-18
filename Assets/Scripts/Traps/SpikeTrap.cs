@@ -30,6 +30,8 @@ public class SpikeTrap : Trap
     {
         base.Activate();
 
+        AudioManager.instance.PlaySpikeTrap();
+
         Transform trf = trapCollider.transform;
         Vector3 center = trf.TransformPoint(trapCollider.center);
         Vector3 halfExtents = Vector3.Scale(trapCollider.size / 2f, trf.lossyScale);
