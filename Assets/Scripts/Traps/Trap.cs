@@ -118,6 +118,6 @@ public abstract class Trap : MonoBehaviour
             if (rand < critPercentage) multiplier = 2;
         }
 
-        damageable.GetDamage(trapDamage * multiplier);
+        damageable.GetDamage(trapDamage * multiplier, (multiplier > 1));
     }
 }

@@ -21,8 +21,10 @@ public class PlayerStats : MonoBehaviour, IDamageable
         lifeChanged?.Invoke(life, maxLife);
     }
 
-    public void GetDamage(int damage)
+    public void GetDamage(int damage, bool isCritNOTUSE)
     {
+        if (life == 0) return;
+
         life -= damage;
 
         if (life <= 0)
@@ -33,6 +35,11 @@ public class PlayerStats : MonoBehaviour, IDamageable
 
             die?.Invoke(maxLife);
         }
-        else lifeChanged?.Invoke(life, maxLife);
+        else
+        {
+            AudioManager.instance.PlayDamagePlayer();
+
+            lifeChanged?.Invoke(life, maxLife); 
+        }
     }
 }

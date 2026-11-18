@@ -47,7 +47,7 @@ public class SpikeTrap : Trap
 
             if (damageable != null)
             {
-                damageable.GetDamage(trapDamage);
+                DoDamage(damageable);
             }
         }
     }

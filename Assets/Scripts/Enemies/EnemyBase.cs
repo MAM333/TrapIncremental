@@ -72,7 +72,7 @@ public class EnemyBase : MonoBehaviour, IDamageable
         Move();
     }
 
-    public void GetDamage(int damage)
+    public void GetDamage(int damage, bool isCrit)
     {
         life -= damage;
 
@@ -80,7 +80,7 @@ public class EnemyBase : MonoBehaviour, IDamageable
 
         StopAllCoroutines();
 
-        if (!isBoss) StartCoroutine(ShowDamage(damage));
+        if (!isBoss) StartCoroutine(ShowDamage(damage, isCrit));
         
         if (life <= 0)
         {
@@ -89,12 +89,13 @@ public class EnemyBase : MonoBehaviour, IDamageable
         }
     }
 
-    IEnumerator ShowDamage(int damage)
+    IEnumerator ShowDamage(int damage, bool isCrit)
     {
         mesh.material = damageMaterial;
 
         DamageText_UI text = Instantiate(damageText, nums).GetComponent<DamageText_UI>();
         text.SetText(damage);
+        if (isCrit) text.SetCrit();
 
         yield return new WaitForSeconds(showDamageTime);
 
@@ -117,7 +118,7 @@ public class EnemyBase : MonoBehaviour, IDamageable
         timer -= Time.deltaTime;
         if (timer <= 0)
         {
-            playerDamageable.GetDamage(damagePerMilisecond);
+            playerDamageable.GetDamage(damagePerMilisecond, false);
             timer = 0.1f;
         }
     }

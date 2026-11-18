@@ -23,6 +23,11 @@ public class DamageText_UI : MonoBehaviour
         textMesh.text = damage.ToString();
     }
 
+    public void SetCrit()
+    {
+        textMesh.color = Color.red;
+    }
+
     IEnumerator MoveAndDisappear()
     {
         float timer = timeShowing;

@@ -74,25 +74,6 @@ public class AudioManager : MonoBehaviour
         PlaySound(thunderTrap, thunderTrapV);
     }
 
-    bool canPlayEnemyDied = true;
-    public void PlayEnemyDied()
-    {
-        if (canPlayEnemyDied) 
-        { 
-            PlaySound(enemyDied, enemyDiedV);
-            StartCoroutine(DoNotPlayEnemyDiedSound());
-        }
-    }
-
-    IEnumerator DoNotPlayEnemyDiedSound()
-    {
-        canPlayEnemyDied = false;
-
-        yield return new WaitForSeconds(0.3f);
-
-        canPlayEnemyDied = true;
-    }
-
     public void PlayUpgrade()
     {
         PlaySound(upgrade, upgradeV);
@@ -116,5 +97,43 @@ public class AudioManager : MonoBehaviour
     public void PlayNextRound()
     {
         PlaySound(nextRound, nextRoundV);
+    }
+
+    bool canPlayEnemyDied = true;
+    public void PlayEnemyDied()
+    {
+        if (canPlayEnemyDied)
+        {
+            PlaySound(enemyDied, enemyDiedV);
+            StartCoroutine(DoNotPlayEnemyDiedSound());
+        }
+    }
+
+    IEnumerator DoNotPlayEnemyDiedSound()
+    {
+        canPlayEnemyDied = false;
+
+        yield return new WaitForSeconds(0.3f);
+
+        canPlayEnemyDied = true;
+    }
+
+    bool canPlayDamagePlayer = true;
+    public void PlayDamagePlayer()
+    {
+        if (canPlayDamagePlayer)
+        {
+            PlaySound(notUpgrade, notUpgradeV);
+            StartCoroutine(DoNotPlayPlayerDamage());
+        }
+    }
+
+    IEnumerator DoNotPlayPlayerDamage()
+    {
+        canPlayDamagePlayer = false;
+
+        yield return new WaitForSeconds(0.3f);
+
+        canPlayDamagePlayer = true;
     }
 }
