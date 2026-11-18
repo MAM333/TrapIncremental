@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using UnityEngine;
 
 public class PlayerSaveManager : MonoBehaviour
@@ -29,5 +30,12 @@ public class PlayerSaveManager : MonoBehaviour
         WhichUpgrade whichUpg = playerUpgrades.upgrades[index];
         whichUpg.which = which;
         playerUpgrades.upgrades[index] = whichUpg;
+    }
+
+    public void ResetUpgradesAndPoints()
+    {
+        SavePoints(0);
+
+        for (int i = 0; i < playerUpgrades.upgrades.Count; ++i) ActualizeUpgrade(i, 0);
     }
 }

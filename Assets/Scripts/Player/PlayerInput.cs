@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,6 +12,10 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] InputActionReference useSecondWeapon;
     [SerializeField] InputActionReference useThirdWeapon;
     [SerializeField] InputActionReference useFourthWeapon;
+
+    [SerializeField] InputActionReference openMenu;
+
+    public event Action OpenMenu;
 
     private void Awake()
     {
@@ -30,6 +35,8 @@ public class PlayerInput : MonoBehaviour
         useSecondWeapon.action.performed += OnUseSecondWeapon;
         useThirdWeapon.action.performed += OnUseThirdWeapon;
         useFourthWeapon.action.performed += OnUseFourthWeapon;
+
+        openMenu.action.performed += OnOpenMenu;
     }
 
     private void OnEnable()
@@ -41,6 +48,7 @@ public class PlayerInput : MonoBehaviour
         useSecondWeapon.action.Enable();
         useThirdWeapon.action.Enable();
         useFourthWeapon.action.Enable();
+        openMenu.action.Enable();
     }
 
     Vector2 rawMove;
@@ -86,6 +94,11 @@ public class PlayerInput : MonoBehaviour
         playerMovement.UseWeapon(3);
     }
 
+    void OnOpenMenu(InputAction.CallbackContext ctx)
+    {
+        OpenMenu?.Invoke();
+    }
+
 
     private void OnDisable()
     {
@@ -96,6 +109,7 @@ public class PlayerInput : MonoBehaviour
         useSecondWeapon.action.Disable();
         useThirdWeapon.action.Disable();
         useFourthWeapon.action.Disable();
+        openMenu.action.Disable();
     }
 
     private void OnDestroy()
@@ -114,5 +128,7 @@ public class PlayerInput : MonoBehaviour
         useSecondWeapon.action.performed -= OnUseSecondWeapon;
         useThirdWeapon.action.performed -= OnUseThirdWeapon;
         useFourthWeapon.action.performed -= OnUseFourthWeapon;
+
+        openMenu.action.performed -= OnOpenMenu;
     }
 }

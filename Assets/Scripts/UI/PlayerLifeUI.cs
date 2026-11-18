@@ -24,7 +24,7 @@ public class PlayerLifeUI : MonoBehaviour
         lifeText.text = life.ToString() + " / " + maxLife.ToString();
 
         float factor = (float)life / maxLife;
-        float newBarWidth = Mathf.Lerp(0, 600, factor);
+        float newBarWidth = Mathf.Lerp(0, initBarWidth, factor);
         float newX = Mathf.Lerp(finalPosX, 0, factor);
 
         greenBar.sizeDelta = new Vector2(newBarWidth, greenBar.sizeDelta.y);

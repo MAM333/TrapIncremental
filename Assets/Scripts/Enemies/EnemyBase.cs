@@ -21,11 +21,14 @@ public class EnemyBase : MonoBehaviour, IDamageable
     [SerializeField] float showDamageTime = 0.2f;
     [SerializeField] GameObject damageText;
     [SerializeField] Transform nums;
+    [SerializeField] bool isBoss = false;
 
+    public event Action<int, int> enemyDamaged;
     public event Action<EnemyBase> enemyDied;
 
     float moveSpeed = 0;
     int life = 10000;
+    int lifeAddition = 0;
 
     Material initMaterial;
 
@@ -56,6 +59,7 @@ public class EnemyBase : MonoBehaviour, IDamageable
     public void AddHp(int hp)
     {
         life = baseLife + hp - (baseLife - life);
+        lifeAddition = hp;
     }
 
     bool touchingPlayer = false;
@@ -72,8 +76,11 @@ public class EnemyBase : MonoBehaviour, IDamageable
     {
         life -= damage;
 
+        enemyDamaged?.Invoke(life, baseLife + lifeAddition);
+
         StopAllCoroutines();
-        StartCoroutine(ShowDamage(damage));
+
+        if (!isBoss) StartCoroutine(ShowDamage(damage));
         
         if (life <= 0)
         {
